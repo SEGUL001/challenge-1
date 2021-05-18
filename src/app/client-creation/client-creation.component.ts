@@ -18,7 +18,6 @@ export class ClientCreationComponent implements OnInit {
 
   loading: boolean;
 
-maxDate: any;
   model: NgbDateStruct;
   client: any = {
     age: { valid: true, value: 0 },
@@ -28,14 +27,12 @@ maxDate: any;
   };
   ngOnInit(): void {
     this.loading = false;
-    this.maxDate = {year:new Date().getFullYear(),month: new Date().getMonth(), day: new Date().getDay() }
-
   }
 
   constructor(private calendar: NgbCalendar, private clientService: ClientService, private router: Router) {
     this.model = this.calendar.getToday();
     clientService.getClients().subscribe((result: any) => console.log(result))
-    
+
   }
 
   createClient() {
@@ -50,7 +47,7 @@ maxDate: any;
         birthDate: new Date(this.model.year, this.model.month, this.model.day).toDateString()
       }
       console.log(newClient);
-      
+
       this.clientService.addClient(newClient)
       this.loading = false;
       this.router.navigate(["/created"])
@@ -66,7 +63,7 @@ maxDate: any;
 
     let validForm = true;
 
-    if (this.calendar.getToday().equals(this.model) || this.calendar.getToday().before(this.model) ) {
+    if (this.calendar.getToday().equals(this.model) || this.calendar.getToday().before(this.model)) {
       validForm = false
       this.client.birthDate.valid = false;
     } else {

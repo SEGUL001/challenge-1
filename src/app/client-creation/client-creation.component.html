@@ -29,9 +29,8 @@
         </div>
         <div class="form-row mb-4">
 
-            <ngb-datepicker [(ngModel)]="model" #d></ngb-datepicker>
+            <ngb-datepicker  [minDate]="{year: 1920, month:1, day: 1}" [(ngModel)]="model" #d></ngb-datepicker>
         </div>
-
 
         <!-- Sign up button -->
         <button class="btn btn-info my-4 btn-block waves-effect waves-light" (click)="createClient()">Agregar
