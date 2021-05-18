@@ -1,0 +1,40 @@
+
+  <div *ngIf="loading" class="container text-center">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+  </div>
+<div *ngIf="!loading" class="container text-center">
+    <div class="text-center border border-light p-5">
+
+        <p class="h4 mb-4">Creacion de cliente</p>
+        
+
+        <div class="form-row mb-4">
+            <div class="col">
+                <!-- First name -->
+                <input type="text" [ngClass]="{'bg-danger': !client.name.valid}" class="form-control" [(ngModel)]="client.name.value" placeholder="Nombre">
+            </div>
+            <div class="col">
+                <!-- Last name -->
+                <input type="text" [ngClass]="{'bg-danger': !client.surname.valid}" class="form-control" [(ngModel)]="client.surname.value" placeholder="Apellido">
+            </div>
+        </div>
+        <div class="form-row mb-4"><label for="age">Edad (mayor a cero)</label>
+            <input type="number" [ngClass]="{'bg-danger': !client.age.valid}" id="age" min="0" class="form-control mb-4" [(ngModel)]="client.age.value"
+                placeholder="Edad">
+        </div>
+        <div [ngClass]="{'text-danger': !client.birthDate.valid}" class="form-row mb-4">
+            <p>fecha de nacimiento (anterior al dia de hoy)</p>
+        </div>
+        <div class="form-row mb-4">
+
+            <ngb-datepicker [(ngModel)]="model" #d></ngb-datepicker>
+        </div>
+
+
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block waves-effect waves-light" (click)="createClient()">Agregar
+            cliente</button>
+    </div>
+</div>
